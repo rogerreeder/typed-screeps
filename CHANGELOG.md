@@ -7,9 +7,60 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+- Add type inference for params in filter callbacks ([#221](https://github.com/screepers/typed-screeps/pull/221))
+- Add missing `MARKET_FEE` constant ([#213](https://github.com/screepers/typed-screeps/pull/213))
+- Add `CommodityTypes` type and `CommidityEntry` interface ([#212](https://github.com/screepers/typed-screeps/pull/212))
+- Add RoomTerrain.getRawBuffer() ([#247](https://github.com/screepers/typed-screeps/pull/247))
+- Feat: Setting the Order type to ORDER_BUY | ORDER_SELL instead of string ([#255](https://github.com/screepers/typed-screeps/pull/255))
+
+### Updated
+
+- Update `PathFinder.CostMatrix` to be `CostMatrixConstructor` to separate static methods from `CostMatrix`. ([#214](https://github.com/screepers/typed-screeps/pull/214))
+- Update `LOOK_STRUCTURES` return type to `AnyStructure` ([#217](https://github.com/screepers/typed-screeps/pull/217))
+- Update `Game.structures` type to `OwnedStructure` ([#211](https://github.com/screepers/typed-screeps/pull/211))
+- Refactor: Decoupling `FilterOption` and `FindConstant` and improve `FilterOption` ([#238](https://github.com/screepers/typed-screeps/pull/238))
+- Fix: Mark `Spawning.directions` as optional ([#244](https://github.com/screepers/typed-screeps/pull/244))
+- Fix: Unlimited stores have no notion of free capacity ([#208](https://github.com/screepers/typed-screeps/pull/208))
+- Fix: `Room.getEventLog()` may return string ([#245](https://github.com/screepers/typed-screeps/pull/245))
+- FIx: Mark `RoomObject.effects` as optional
+- Fix: Update invader core-related constants to their actual values ([#249](https://github.com/screepers/typed-screeps/pull/249))
+- Game.map.describeExits returns null for non-existent rooms ([#250](https://github.com/screepers/typed-screeps/pull/250))
+- Fix: lookForAtArea matrix result type. ([#253](https://github.com/screepers/typed-screeps/pull/253))
+- Update Game.market.deal documentation ([#256](https://github.com/screepers/typed-screeps/pull/256))
+- Fix a transferEnergy type error where it suggested a creep. ([#258](https://github.com/screepers/typed-screeps/pull/258))
+
+### Removed
+
+- Removes deprecated `Game.getObjectById(id: string)` function. Use version with `Id<T>` typed ids. ([#207](https://github.com/screepers/typed-screeps/pull/207))
+
+## 3.3.2 to 3.3.8
+
+These versions were pushed by DefinitelyTyped maintainers, has no effect on type definitions
+
+- MarkoSulamagi resigns from DT side maintainers
+
+## [3.3.1] - 2023-02-16
+
+### Updated
+
+- Update `ConcreteStructure` syntax to use map instead of conditional chain ([#209](https://github.com/screepers/typed-screeps/pull/209))
+
+### Fixed
+
+- Fix: brings removed `Game.getObjectById(id: string)` back to avoid breaking changes. ([#226](https://github.com/screepers/typed-screeps/pull/226))
+
+## [3.3.0] - 2022-04-18
+
+### Updated
+
 - Updates `ticksToRegeneration` to be optional in `Minerals` ([#204](https://github.com/screepers/typed-screeps/pull/204))
 - Updates `level` to be optional in `StructureFactory` ([#205](https://github.com/screepers/typed-screeps/pull/205))
 - Updates `Id` type to only be used on types with an `id` property ([#207](https://github.com/screepers/typed-screeps/pull/207))
+
+### Removed
+
 - Removes deprecated `Game.getObjectById(id: string)` function. Use version with `Id<T>` typed ids. ([#207](https://github.com/screepers/typed-screeps/pull/207))
 
 ## [3.2.4] - 2021-08-21
@@ -356,7 +407,9 @@ This version was pushed by DefinitelyTyped maintainers, not present in this repo
 
 - Initial public `npm` release.
 
-[unreleased]: https://github.com/screepers/typed-screeps/compare/v3.2.4...HEAD
+[unreleased]: https://github.com/screepers/typed-screeps/compare/v3.3.1...HEAD
+[3.3.1]: https://github.com/screepers/typed-screeps/compare/v3.3.0...v3.3.1
+[3.3.0]: https://github.com/screepers/typed-screeps/compare/v3.2.4...v3.3.0
 [3.2.4]: https://github.com/screepers/typed-screeps/compare/v3.2.2...v3.2.4
 [3.2.2]: https://github.com/screepers/typed-screeps/compare/v3.2.1...v3.2.2
 [3.2.1]: https://github.com/screepers/typed-screeps/compare/v3.2.0...v3.2.1

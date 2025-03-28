@@ -121,13 +121,15 @@ type FIND_RUINS = 123;
 
 // Filter Options
 
-interface FilterOptions<T extends FindConstant, S extends FindTypes[T] = FindTypes[T]> {
-    filter: FilterFunction<FindTypes[T], S> | FilterObject | string;
+interface FilterOptions<T, S extends T> {
+    filter?: PredicateFilterFunction<T, S> | FilterFunction<T> | FilterObject<T> | string;
 }
-type FilterFunction<T, S extends T> = (object: T) => object is S;
-interface FilterObject {
-    [key: string]: any;
-}
+
+type PredicateFilterFunction<T, S extends T> = (object: T, index: number, collection: T[]) => object is S;
+type FilterFunction<T> = (object: T, index: number, collection: T[]) => unknown;
+type FilterObject<T> = DeepPartial<T>;
+
+type DeepPartial<T> = T extends object ? { [P in keyof T]?: DeepPartial<T[P]> } : T;
 
 // Body Part Constants
 
@@ -660,8 +662,6 @@ type PowerConstant =
     | PWR_OPERATE_EXTENSION
     | PWR_OPERATE_OBSERVER
     | PWR_OPERATE_TERMINAL
-    | PWR_OPERATE_SPAWN
-    | PWR_OPERATE_TOWER
     | PWR_DISRUPT_SPAWN
     | PWR_DISRUPT_TOWER
     | PWR_DISRUPT_SOURCE
@@ -698,3 +698,10 @@ type EffectConstant = EFFECT_INVULNERABILITY | EFFECT_COLLAPSE_TIMER;
 
 type EFFECT_INVULNERABILITY = 1001;
 type EFFECT_COLLAPSE_TIMER = 1002;
+
+type DENSITY_LOW = 1;
+type DENSITY_MODERATE = 2;
+type DENSITY_HIGH = 3;
+type DENSITY_ULTRA = 4;
+
+type DensityConstant = DENSITY_LOW | DENSITY_MODERATE | DENSITY_HIGH | DENSITY_ULTRA;

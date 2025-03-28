@@ -370,10 +370,8 @@ declare const GCL_POW: number;
 declare const GCL_MULTIPLY: number;
 declare const GCL_NOVICE: number;
 
-declare const MODE_SIMULATION: string;
-declare const MODE_SURVIVAL: string;
-declare const MODE_WORLD: string;
-declare const MODE_ARENA: string;
+declare const MODE_SIMULATION: null;
+declare const MODE_WORLD: null;
 
 declare const TERRAIN_MASK_WALL: TERRAIN_MASK_WALL;
 declare const TERRAIN_MASK_SWAMP: TERRAIN_MASK_SWAMP;
@@ -404,10 +402,10 @@ declare const MINERAL_DENSITY_PROBABILITY: {
 
 declare const MINERAL_DENSITY_CHANGE: number;
 
-declare const DENSITY_LOW: number;
-declare const DENSITY_MODERATE: number;
-declare const DENSITY_HIGH: number;
-declare const DENSITY_ULTRA: number;
+declare const DENSITY_LOW: DENSITY_LOW;
+declare const DENSITY_MODERATE: DENSITY_MODERATE;
+declare const DENSITY_HIGH: DENSITY_HIGH;
+declare const DENSITY_ULTRA: DENSITY_ULTRA;
 
 declare const DEPOSIT_EXHAUST_MULTIPLY: number;
 declare const DEPOSIT_EXHAUST_POW: number;
@@ -728,15 +726,14 @@ declare const BOOSTS: {
 
 declare const INTERSHARD_RESOURCES: InterShardResourceConstant[];
 
-declare const COMMODITIES: Record<
-    CommodityConstant | MineralConstant | RESOURCE_GHODIUM | RESOURCE_ENERGY,
-    {
-        level?: number;
-        amount: number;
-        cooldown: number;
-        components: Record<DepositConstant | CommodityConstant | MineralConstant | RESOURCE_ENERGY | RESOURCE_GHODIUM, number>;
-    }
->;
+type CommoditiesTypes = CommodityConstant | MineralConstant | RESOURCE_GHODIUM | RESOURCE_ENERGY;
+interface CommodityEntry {
+    level?: number;
+    amount: number;
+    cooldown: number;
+    components: Record<DepositConstant | CommoditiesTypes, number>;
+}
+declare const COMMODITIES: Record<CommoditiesTypes, CommodityEntry>;
 
 declare const LOOK_CREEPS: LOOK_CREEPS;
 declare const LOOK_ENERGY: LOOK_ENERGY;
@@ -756,6 +753,7 @@ declare const LOOK_RUINS: LOOK_RUINS;
 declare const ORDER_SELL: ORDER_SELL;
 declare const ORDER_BUY: ORDER_BUY;
 
+declare const MARKET_FEE: 0.05;
 declare const MARKET_MAX_ORDERS: 300;
 declare const MARKET_ORDER_LIFE_TIME: 2592000000; // 1000*60*60*24*30
 
@@ -828,7 +826,7 @@ declare const PWR_OPERATE_FACTORY: PWR_OPERATE_FACTORY;
 declare const EFFECT_INVULNERABILITY: EFFECT_INVULNERABILITY;
 declare const EFFECT_COLLAPSE_TIMER: EFFECT_COLLAPSE_TIMER;
 
-declare const INVADER_CORE_HITS: 1000000;
+declare const INVADER_CORE_HITS: 100000;
 declare const INVADER_CORE_CREEP_SPAWN_TIME: {
     0: 0;
     1: 0;
@@ -837,11 +835,24 @@ declare const INVADER_CORE_CREEP_SPAWN_TIME: {
     4: 2;
     5: 1;
 };
-declare const INVADER_CORE_EXPAND_TIME: 15000;
-declare const INVADER_CORE_CONTROLLER_POWER: 100;
+declare const INVADER_CORE_EXPAND_TIME: {
+    1: 4000;
+    2: 3500;
+    3: 3000;
+    4: 2500;
+    5: 2000;
+};
+declare const INVADER_CORE_CONTROLLER_POWER: 2;
 declare const INVADER_CORE_CONTROLLER_DOWNGRADE: 5000;
-declare const STRONGHOLD_RAMPART_HITS: { 0: 0; 1: 50000; 2: 200000; 3: 500000; 4: 1000000; 5: 2000000 };
-declare const STRONGHOLD_DECAY_TICKS: 150000;
+declare const STRONGHOLD_RAMPART_HITS: {
+    0: 0;
+    1: 100000;
+    2: 200000;
+    3: 500000;
+    4: 1000000;
+    5: 2000000;
+};
+declare const STRONGHOLD_DECAY_TICKS: 75000;
 
 declare const POWER_INFO: {
     [powerID: number]: {
